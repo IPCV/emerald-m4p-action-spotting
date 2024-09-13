@@ -1,0 +1,30 @@
+services:
+  video-receiver:
+    build:
+      context: .
+      dockerfile: receiver/.receiver.Dockerfile
+    ports:
+      - "5000:5000" 
+    volumes:
+    - ./receiver/processor.py:/app/processor.py # for hot reload
+    - ./receiver/receiver.py:/app/receiver.py
+    #   - ./receiver/uploads:/app/uploads uncomment for latest test stage
+    command: ["python", "receiver.py"]
+
+  simple-sender:
+    build:
+      context: .
+      dockerfile: sender/.sender.Dockerfile
+    volumes:
+      - ../output-chunks:/chunks
+    environment:
+      - RECEIVER_URL=http://video-receiver:5000
+    command: ["python", "simple_sender.py"]
+    depends_on:
+      - video-receiver 
+
+volumes:
+  uploads:
+  chunks:
+
+

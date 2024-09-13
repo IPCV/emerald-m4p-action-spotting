@@ -1,0 +1,1 @@
+from .action_spotter import ActionSpottingPipeline

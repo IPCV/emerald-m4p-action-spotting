@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  ffmpeg-splitter:
+    build:
+      context: .
+      dockerfile: ffmpeg.Dockerfile
+    environment:
+      - VIDEO_INPUT_FILE=<file_name> # change to video name 
+      - SEGMENT_TIME=2
+    volumes:
+      - ../output-chunks:/output
+      - ../media:/media # if needed, change ..media to video folder path. 

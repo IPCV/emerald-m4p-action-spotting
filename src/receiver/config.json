@@ -1,0 +1,7 @@
+{
+    "DEVICE": "cpu",
+    "METADATA_FILE": "metadata.json",
+    "PROCESSED_FOLDER": "processed",
+    "UPLOAD_FOLDER": "uploads",
+    "WEIGHTS_FILE": "/app/receiver/weights/model.pth.tar"
+}
